@@ -92,3 +92,25 @@ var h1=document.querySelector("header h1");
 console.log(a);
 container.insertBefore(a,h1);
 a.style.fontSize="40px";
+// Get the <ul> element with id "items"
+const itemsList = document.getElementById('items');
+
+// Add event listeners to delete buttons
+itemsList.addEventListener('click', function(e) {
+  if (e.target.classList.contains('delete-item')) {
+    // Remove the parent <li> of the delete button
+    e.target.parentElement.remove();
+  }
+});
+
+// Add edit button next to the delete icon for each <li>
+const listItems = document.querySelectorAll('li');
+listItems.forEach(function(item) {
+  // Create an edit button element
+  const editButton = document.createElement('button');
+  editButton.className = 'btn btn-primary btn-sm ml-2'; // Bootstrap classes
+  editButton.textContent = 'Edit'; // Button text
+
+  // Append the edit button to the <li>
+  item.appendChild(editButton);
+});
