@@ -40,12 +40,55 @@
 // if (allListItems.length >= 2) {
 //   allListItems[1].textContent = 'Edited Item 2';
 // }
-const secondItem = document.querySelector('#items li:nth-child(2)');
-secondItem.style.color = 'green';
+// const secondItem = document.querySelector('#items li:nth-child(2)');
+// secondItem.style.color = 'green';
 
-// Select all the odd elements and make their background green
-const oddItems = document.querySelectorAll('#items li:nth-child(2)');
-oddItems.forEach(item => {
-  item.style.backgroundColor = 'green';
-});
-
+// // Select all the odd elements and make their background green
+// const oddItems = document.querySelectorAll('#items li:nth-child(2)');
+// oddItems.forEach(item => {
+//   item.style.backgroundColor = 'green';
+// });
+// var item=document.querySelector("#items");
+// console.log(item.parentNode);
+// item.parentNode.style.backgroundColor="pink";
+// console.log(item.parentNode.parentNode.parentNode);
+//ParentElement
+var item=document.querySelector("#items");
+console.log(item.parentElement);
+item.parentNode.style.backgroundColor="yellow";
+console.log(item.parentElement.parentElement.parentElement);
+//Firstchild
+console.log(item.firstChild);
+//FirstChildElement
+console.log(item.firstElementChild);
+item.firstElementChild.style.backgroundColor="pink";
+item.firstElementChild.textContent="HEllo World";
+//lastchild
+console.log(item.lasChild);
+//FirstChildElement
+console.log(item.lastElementChild);
+item.lastElementChild.style.backgroundColor="pink";
+item.lastElementChild.textContent="HEllo World";
+//nextsibling
+console.log(item.nextSibling);
+console.log(item.nextElementSibling);
+//previous sibling
+console.log(item.previousSibling);
+//previous sibling Element
+console.log(item.previousElementSibling);
+item.previousElementSibling.style.color="red";
+//new div
+var a = document.createElement('div');
+console.log(a);
+a.className="hello";
+a.id="h";
+a.setAttribute('title','heelo world');
+console.log(a);
+var b=document.createTextNode("Hello word");
+a.append(b);
+console.log(a);
+var container=document.querySelector("header .container");
+var h1=document.querySelector("header h1");
+console.log(a);
+container.insertBefore(a,h1);
+a.style.fontSize="40px";
