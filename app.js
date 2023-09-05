@@ -19,3 +19,24 @@ addItemsHeading.style.color = 'green';
  for(var i=0;i<items.length;i++){
     items[i].style.fontWeight="bold";
  }
+ // Select the new <li> element by its ID
+const newItem = document.getElementById('new-item');
+
+// Modify the content of the new <li> element
+newItem.textContent = 'Edited New Item (Updated)';
+
+// Use getElementsByClassName to select all elements with class "list-group-item"
+const itemsWithClassName = document.getElementsByClassName('list-group-item');
+
+// Modify the content of the first element with this class
+if (itemsWithClassName.length > 0) {
+  itemsWithClassName[0].textContent = 'Edited Item 1';
+}
+
+// Use getElementsByTagName to select all <li> elements
+const allListItems = document.getElementsByTagName('li');
+
+// Modify the content of the second <li> element
+if (allListItems.length >= 2) {
+  allListItems[1].textContent = 'Edited Item 2';
+}
