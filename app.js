@@ -126,58 +126,83 @@ itemList.addEventListener('click', removeItem);
 filter.addEventListener('keyup', filterItems);
 
 // Add item
-function addItem(e){
+// ...
+// Add item
+function addItem(e) {
   e.preventDefault();
 
-  // Get input value
-  var newItem = document.getElementById('item').value;
+  // Get input values
+  var itemName = document.getElementById('item').value;
+  var itemDescription = document.getElementById('description').value;
 
   // Create new li element
   var li = document.createElement('li');
   // Add class
   li.className = 'list-group-item';
-  // Add text node with input value
-  li.appendChild(document.createTextNode(newItem));
+  
+  // Create a div to hold item name and description
+  var itemInfoDiv = document.createElement('div');
+  
+  // Add text nodes with input values
+  var itemNameText = document.createTextNode('Name: ' + itemName);
+  var itemDescriptionText = document.createTextNode('Description: ' + itemDescription);
+  
+  // Append text nodes to itemInfoDiv
+  itemInfoDiv.appendChild(itemNameText);
+  itemInfoDiv.appendChild(document.createElement('br')); // Add line break
+  itemInfoDiv.appendChild(itemDescriptionText);
 
   // Create del button element
   var deleteBtn = document.createElement('button');
-
   // Add classes to del button
   deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
-
   // Append text node
   deleteBtn.appendChild(document.createTextNode('X'));
 
-  // Append button to li
+  // Append itemInfoDiv and deleteBtn to li
+  li.appendChild(itemInfoDiv);
   li.appendChild(deleteBtn);
 
   // Append li to list
   itemList.appendChild(li);
-}
 
-// Remove item
-function removeItem(e){
-  if(e.target.classList.contains('delete')){
-    if(confirm('Are You Sure?')){
-      var li = e.target.parentElement;
-      itemList.removeChild(li);
-    }
-  }
+  // Clear input fields
+  document.getElementById('item').value = '';
+  document.getElementById('description').value = '';
 }
 
 // Filter Items
-// function filterItems(e){
-//   // convert text to lowercase
-//   var text = e.target.value.toLowerCase();
-//   // Get lis
-//   var items = itemList.getElementsByTagName('li');
-//   // Convert to an array
-//   Array.from(items).forEach(function(item){
-//     var itemName = item.firstChild.textContent;
-//     if(itemName.toLowerCase().indexOf(text) != -1){
-//       item.style.display = 'block';
-//     } else {
-//       item.style.display = 'none';
-//     }
-//   });
-// }
+function filterItems(e) {
+  // Convert text to lowercase
+  var text = e.target.value.toLowerCase();
+  // Get lis
+  var items = itemList.getElementsByTagName('li');
+  // Convert to an array
+  Array.from(items).forEach(function(item) {
+    var itemInfoDiv = item.querySelector('div');
+    var itemInfo = itemInfoDiv.textContent.toLowerCase();
+    if (itemInfo.indexOf(text) != -1) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+// ...
+
+// Filter Items
+function filterItems(e){
+  // convert text to lowercase
+  var text = e.target.value.toLowerCase();
+  // Get lis
+  var items = itemList.getElementsByTagName('li');
+  // Convert to an array
+  Array.from(items).forEach(function(item){
+    var itemName = item.firstChild.textContent;
+    if(itemName.toLowerCase().indexOf(text) != -1){
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+     }
+  });
+}
