@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Yourself</title>
+    <style>
+        /* CSS for styling the form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .radio-group label {
+            margin-right: 10px;
+        }
+
+        /* CSS for hiding/showing messages */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register Yourself</h2>
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group radio-group">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Female</label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+
+            <p class="success-message hidden">Registration successful! Welcome aboard.</p>
+            <p class="error-message hidden">Error! Please check your input and try again.</p>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript for form submission and message display
+        const form = document.getElementById('registration-form');
+        const successMessage = document.querySelector('.success-message');
+        const errorMessage = document.querySelector('.error-message');
+
+        form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Get user details
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+
+    // Create a user object
+    const user = {
+        name,
+        email,
+        password,
+        gender
+    };
+
+    // Store user details in local storage
+    localStorage.setItem('user', JSON.stringify(user));
+
+    // Show a success message
+    successMessage.classList.remove('hidden');
+    errorMessage.classList.add('hidden');
+
+    // Reset the form
+    form.reset();
+});
+
+    </script>
+</body>
+</html>
